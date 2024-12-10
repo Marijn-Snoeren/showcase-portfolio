@@ -1,13 +1,13 @@
 'use client';
 
-import Project_Right from '../components/Project_Right';
-import Project_Left from '../components/Project_Left';
+import Project from '../components/Project';
 
 export default function Home() {
   return (
     <div className="min-h-screen w-full flex flex-col">
-      <Project_Right />
-      <Project_Left />
+      <Project />
+      <Project />
+      <Project />
     </div>
   );
 }
