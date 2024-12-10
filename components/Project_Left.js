@@ -1,15 +1,25 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { gsap } from 'gsap';
+import { useScroll, useTransform, motion } from 'motion/react';
 
 export default function Project_Left() {
   const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
+  const container = useRef(null);
+
+  // Set up scroll-based transformations
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ['start end', 'end start'],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ['-50%', '50vh']); // Parallax effect
 
   const handleCardClick = (e) => {
     const card = e.target.closest('.photo-card');
     const img = card.querySelector('img'); // Target the image directly
-    const descriptionContainer = card.closest('.project-container').querySelector('.description-container'); // The description container in the left column
+    const descriptionContainer = card.closest('.project-container').querySelector('.description-container'); // The description container in the right column
 
     // Shrink the image while keeping it centered
     gsap.to(img, {
@@ -37,17 +47,18 @@ export default function Project_Left() {
   };
 
   return (
-    <div className="project-container text-black bg-white grid grid-cols-2 w-full h-screen overflow-hidden">
+    <div className="project-container text-black bg-white grid grid-cols-2 w-full h-screen overflow-hidden" ref={container}>
       {/* Left column: Image */}
       <div className="relative flex items-center justify-center w-full h-full">
         <div
           className="photo-card relative cursor-pointer overflow-hidden w-full h-full flex items-center justify-center"
           onClick={handleCardClick}
         >
-          <img
+          <motion.img
             className="w-full h-full object-cover absolute inset-0"
             src="/1.jpg"
             alt="Sample Image"
+            style={{ y, willChange: 'transform' }} // Apply the parallax effect
           />
         </div>
       </div>
@@ -55,7 +66,7 @@ export default function Project_Left() {
       {/* Right column: Description */}
       <div className="relative flex flex-col justify-end p-4 w-full h-full">
         <div className="flex justify-between items-center w-full">
-          <p className="text-2xl font-bold">01</p>
+          <p className="text-2xl font-bold">02</p>
           <h1 className="text-2xl font-bold">PROJECT</h1>
         </div>
 
