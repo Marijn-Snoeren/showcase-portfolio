@@ -8,8 +8,6 @@ export default function Home() {
     <div className="min-h-screen w-full flex flex-col">
       <Project_Right />
       <Project_Left />
-      <Project_Right />
-      <Project_Left />
     </div>
   );
 }
