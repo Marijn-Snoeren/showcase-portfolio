@@ -4,7 +4,7 @@ import { useState, useRef } from 'react';
 import { gsap } from 'gsap';
 import { useScroll, useTransform, motion } from 'motion/react';
 
-export default function Project() {
+export default function Project({ onActivate, onDeactivate }) {
   const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
   const [areExtraImagesVisible, setAreExtraImagesVisible] = useState(false);
   const [isImageShrunk, setIsImageShrunk] = useState(false);
@@ -25,6 +25,7 @@ export default function Project() {
     if (!isImageShrunk) {
       gsap.to(img, { duration: 0.6, scale: 0.8, ease: 'power2.out' });
       setIsImageShrunk(true);
+      onActivate && onActivate();
     }
     setIsDescriptionVisible(true);
     setAreExtraImagesVisible(true);
@@ -36,16 +37,48 @@ export default function Project() {
     if (!isImageShrunk) {
       gsap.to(img, { duration: 0.6, scale: 0.8, ease: 'power2.out' });
       setIsImageShrunk(true);
+      onActivate && onActivate();
     }
   };
 
+  const handleResetClick = () => {
+    setIsImageShrunk(false);
+    setIsDescriptionVisible(false);
+    setAreExtraImagesVisible(false);
+    setIsTextFixed(false);
+    onDeactivate && onDeactivate();
+
+    // Reset image scales
+    const mainImg = container.current.querySelector('.photo-card img');
+    const extraImgs = container.current.querySelectorAll('.extra-images img');
+    
+    gsap.to([mainImg, ...extraImgs], { 
+      duration: 0.6, 
+      scale: 1, 
+      ease: 'power2.out' 
+    });
+  };
+
   return (
-    <div className="bg-white text-black project-container grid grid-cols-2 h-full w-full overflow-hidden" ref={container}>
+    <div 
+      className="bg-white text-black project-container grid grid-cols-2 h-full w-full overflow-hidden" 
+      ref={container}
+    >
       <div className="relative p-4 w-full h-screen flex flex-col justify-end">
         <div className={isTextFixed ? 'fixed bottom-4' : ''}>
           <div className="flex justify-between items-center">
             <h1 className="text-2xl font-bold">PROJECT</h1>
-            <p className={`text-2xl font-bold ${isImageShrunk ? 'opacity-0' : ''}`}>01</p>
+            <div className="flex items-center gap-4">
+              <p className={`text-2xl font-bold ${isImageShrunk ? 'opacity-0' : ''}`}>01</p>
+              {isImageShrunk && (
+                <button 
+                  onClick={handleResetClick}
+                  className="text-sm underline"
+                >
+                  Reset
+                </button>
+              )}
+            </div>
           </div>
         </div>
 
