@@ -12,6 +12,9 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      gridTemplateColumns: {
+        '2-reverse': '1fr 1fr', // Om de volgorde om te keren
+      },
     },
   },
   plugins: [],

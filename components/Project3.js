@@ -45,7 +45,7 @@ export default function Project() {
         <div className={isTextFixed ? 'fixed bottom-4' : ''}>
           <div className="flex justify-between items-center">
             <h1 className="text-2xl font-bold">PROJECT</h1>
-            <p className={`text-2xl font-bold ${isImageShrunk ? 'opacity-0' : ''}`}>01</p>
+            <p className={`text-2xl font-bold ${isImageShrunk ? 'opacity-0' : ''}`}>03</p>
           </div>
         </div>
 
@@ -58,7 +58,7 @@ export default function Project() {
         <div className="photo-card relative cursor-pointer w-full h-screen flex items-center justify-center" onClick={handleCardClick}>
           <motion.img
             className="w-full h-full object-cover absolute inset-0"
-            src="/1.jpg"
+            src="/2.jpg"
             alt="Sample Image"
             style={{ y: isImageShrunk ? '0%' : y }}
           />
@@ -66,7 +66,7 @@ export default function Project() {
 
         {areExtraImagesVisible && (
           <div className="extra-images w-full flex flex-col justify-center gap-4">
-            {['/2.jpg', '/3.jpg'].map((src, index) => (
+            {['/1.jpg', '/3.jpg'].map((src, index) => (
               <div key={index} className="w-full h-screen relative overflow-hidden cursor-pointer" onClick={handleExtraImageClick}>
                 <img
                   className="w-full h-full object-cover absolute inset-0"
