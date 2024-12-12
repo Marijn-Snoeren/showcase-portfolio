@@ -83,7 +83,9 @@ export default function Project({ onActivate, onDeactivate }) {
         </div>
 
         <div className={`absolute inset-0 flex items-center justify-center px-16 transition-all duration-600 ease-out ${isDescriptionVisible ? 'opacity-100' : 'opacity-0 h-0'}`}>
-          <p className="text-xs max-w-xl">Detailed description of the project goes here.</p>
+          <p className="text-xs max-w-md fixed">Quis ex tempor aute velit amet adipisicing sit. Occaecat fugiat tempor labore incididunt Lorem commodo cillum dolor adipisicing nostrud sint do exercitation qui laboris. Commodo adipisicing culpa velit Lorem sunt ea consequat deserunt excepteur magna officia quis ex. Ad et laboris et exercitation deserunt commodo velit laborum fugiat minim officia ex.
+
+Duis dolore dolor non qui eiusmod irure proident quis mollit Lorem ad incididunt deserunt nostrud. Enim sit minim anim. Non ullamco ipsum mollit. Cillum exercitation est aute velit amet elit consectetur consequat ex ipsum consequat mollit.</p>
         </div>
       </div>
 

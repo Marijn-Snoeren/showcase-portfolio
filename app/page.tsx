@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Project from '../components/Project';
 import Project2 from '../components/Project2';
 import Project3 from '../components/Project3';
+import Header from '../components/Header';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -40,6 +41,7 @@ export default function Home() {
 
   return (
 <div ref={containerRef} className="min-h-screen w-full flex flex-col">
+  <Header />
   <div
     className={`project ${activeProject !== null && activeProject !== 0 ? 'hidden' : ''}`}
   >
