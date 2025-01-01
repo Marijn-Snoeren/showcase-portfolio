@@ -7,7 +7,9 @@ import Project from '../components/Project';
 import Project2 from '../components/Project2';
 import Project3 from '../components/Project3';
 import Header from '../components/Header';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
+gsap.registerPlugin(ScrollToPlugin);
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
@@ -45,10 +47,10 @@ export default function Home() {
   <div
     className={`project ${activeProject !== null && activeProject !== 0 ? 'hidden' : ''}`}
   >
-    <Project 
-      onActivate={() => handleProjectActivation(0)} 
-      onDeactivate={handleProjectDeactivation}
-    />
+<Project 
+  onActivate={(index) => handleProjectActivation(index)} 
+  projectIndex={0}
+/>
   </div>
   <div
     className={`project ${activeProject !== null && activeProject !== 1 ? 'hidden' : ''}`}
